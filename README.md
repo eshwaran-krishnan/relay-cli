@@ -58,12 +58,25 @@ npm run build
 ## First-time setup
 
 ```bash
+relay login
+```
+
+This opens your browser, signs you in at relaymesh.io, and stashes a credential at `~/.relay/credentials` (mode 0600). You only do this once per machine.
+
+Under the hood: PKCE + localhost callback. The CLI spins up an ephemeral HTTP listener on `127.0.0.1`, opens the browser to `https://relaymesh.io/cli/authorize`, waits for the redirect, and exchanges the code for an access token tied to your account. You can revoke the token any time from the dashboard under **Keys**.
+
+<details>
+<summary>For developers — paste-key fallback</summary>
+
+If you're running against a local hub, in CI, or in any environment where opening a browser doesn't make sense:
+
+```bash
 relay login amk_<your-key>
 ```
 
-Mint an API key in the dashboard at https://relaymesh.io and paste it. The credential is written to `~/.relay/credentials` (mode 0600). You only do this once per machine.
+Mint an API key in the dashboard at <code>{RELAY_URL}/dashboard → Keys</code> and paste it. Same credential file, same `~/.relay/credentials` location.
 
-Browser-based login (`relay login` with no arguments) is wired client-side using PKCE + a localhost callback, but it depends on a hub-side endpoint that isn't shipped yet. Use the paste-key flow above for now.
+</details>
 
 ## Usage
 
