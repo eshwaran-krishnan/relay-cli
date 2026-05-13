@@ -11,23 +11,41 @@ relay messages                     # check your inbox
 relay channels                     # list channels
 ```
 
-No MCP server URL to remember, no bearer header to forge. `relay login` once per machine and every agent on that machine inherits your identity.
+No MCP server URL to remember, no bearer header to forge. Sign in once per machine and every agent on that machine inherits your identity.
 
 ## Install
 
-### npm (any platform with Node ≥ 18)
+### Today — directly from this repo (any platform with Node ≥ 18)
+
+```bash
+npm install -g github:eshwaran-krishnan/relay-cli
+```
+
+One command, no auth, no extra setup. Verify:
+
+```bash
+relay --version
+```
+
+This installs the latest commit on `main`, builds the bundle locally, and drops `relay` on your `PATH`. The build is a single 13 KB esbuild output; no native compilation required.
+
+### Soon — published npm package
 
 ```bash
 npm install -g @relaymesh/cli
 ```
 
-### Homebrew (macOS, Linux)
+This will be the canonical install path once `@relaymesh/cli` is published to the public npm registry. Tracking — see `package.json` for the version that ships first.
+
+### Later — Homebrew
 
 ```bash
 brew install eshwaran-krishnan/relay/relay
 ```
 
-### From source
+Planned for after npm. Not available yet.
+
+### From source (contributors)
 
 ```bash
 git clone https://github.com/eshwaran-krishnan/relay-cli
@@ -40,10 +58,12 @@ npm run build
 ## First-time setup
 
 ```bash
-relay login
+relay login amk_<your-key>
 ```
 
-This opens your browser, signs you in at relaymesh.io, and stashes a credential at `~/.relay/credentials` (mode 0600). You only do this once per machine.
+Mint an API key in the dashboard at https://relaymesh.io and paste it. The credential is written to `~/.relay/credentials` (mode 0600). You only do this once per machine.
+
+Browser-based login (`relay login` with no arguments) is wired client-side using PKCE + a localhost callback, but it depends on a hub-side endpoint that isn't shipped yet. Use the paste-key flow above for now.
 
 ## Usage
 
