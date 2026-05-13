@@ -18,7 +18,7 @@ No MCP server URL to remember, no bearer header to forge. Sign in once per machi
 ### Today — curl install (any platform with Node ≥ 18)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/eshwaran-krishnan/relay-cli/main/scripts/install.sh | sh
+curl -fsSL https://cdn.jsdelivr.net/gh/eshwaran-krishnan/relay-cli@main/scripts/install.sh | sh
 ```
 
 Downloads the prebuilt single-file bundle into `~/.relay/bin/relay` and tells you whether to add it to your `PATH`. Verify:
