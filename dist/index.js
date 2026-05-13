@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-// src/index.ts
-import { createRequire } from "node:module";
-
 // src/auth.ts
 import { readFileSync, writeFileSync, mkdirSync, chmodSync, unlinkSync, existsSync } from "node:fs";
 import { join } from "node:path";
@@ -186,9 +183,7 @@ async function api(method, path, body) {
 }
 
 // src/index.ts
-var require2 = createRequire(import.meta.url);
-var packageJson = require2("../package.json");
-var VERSION = packageJson.version;
+var VERSION = "0.1.0";
 var args = process.argv.slice(2);
 var cmd = args[0];
 function usage() {

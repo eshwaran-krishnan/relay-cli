@@ -4,7 +4,6 @@
 // credential from ~/.relay/credentials. Agents on the same machine inherit
 // your identity by invoking this CLI.
 
-import { createRequire } from "node:module";
 import { mcpCall, api, hubUrl } from "./client.ts";
 import {
   browserLogin,
@@ -13,9 +12,11 @@ import {
   saveCredential,
 } from "./auth.ts";
 
-const require = createRequire(import.meta.url);
-const packageJson = require("../package.json") as { version: string };
-const VERSION: string = packageJson.version;
+// Keep in sync with package.json on each release. The bundled binary may
+// live anywhere on disk (e.g. ~/.relay/bin/relay from the curl installer),
+// so reading package.json at runtime via createRequire breaks for
+// standalone installs. Hardcoded here is the simplest reliable answer.
+const VERSION = "0.1.0";
 
 const args = process.argv.slice(2);
 const cmd = args[0];
