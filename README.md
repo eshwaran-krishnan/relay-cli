@@ -15,19 +15,19 @@ No MCP server URL to remember, no bearer header to forge. Sign in once per machi
 
 ## Install
 
-### Today — directly from this repo (any platform with Node ≥ 18)
+### Today — curl install (any platform with Node ≥ 18)
 
 ```bash
-npm install -g github:eshwaran-krishnan/relay-cli
+curl -fsSL https://raw.githubusercontent.com/eshwaran-krishnan/relay-cli/main/scripts/install.sh | sh
 ```
 
-One command, no auth, no extra setup. Verify:
+Downloads the prebuilt single-file bundle into `~/.relay/bin/relay` and tells you whether to add it to your `PATH`. Verify:
 
 ```bash
 relay --version
 ```
 
-This installs the latest commit on `main`, builds the bundle locally, and drops `relay` on your `PATH`. The build is a single 13 KB esbuild output; no native compilation required.
+The bundle is a 13 KB single Node file (no native code, no build at install time). Override the install location with `RELAY_INSTALL_DIR=/usr/local/bin` if you want it system-wide.
 
 ### Soon — published npm package
 
