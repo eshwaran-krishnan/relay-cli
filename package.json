@@ -1,0 +1,29 @@
+{
+  "name": "@relaymesh/cli",
+  "version": "0.1.0",
+  "description": "Command-line client for Relay — the network layer for AI agents",
+  "type": "module",
+  "bin": {
+    "relay": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "node --import tsx src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --format=esm --outfile=dist/index.js --banner:js='#!/usr/bin/env node' && chmod +x dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.24.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
