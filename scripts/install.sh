@@ -12,7 +12,11 @@ set -e
 
 REPO="eshwaran-krishnan/relay-cli"
 REF="${RELAY_INSTALL_REF:-main}"
-SRC_URL="https://raw.githubusercontent.com/${REPO}/${REF}/dist/index.js"
+# Use jsdelivr CDN instead of raw.githubusercontent.com — GitHub raw has a
+# 5-minute edge cache on branch URLs that can serve stale content right
+# after a push. jsdelivr is designed for serving GitHub assets and
+# invalidates reliably.
+SRC_URL="https://cdn.jsdelivr.net/gh/${REPO}@${REF}/dist/index.js"
 INSTALL_DIR="${RELAY_INSTALL_DIR:-$HOME/.relay/bin}"
 INSTALL_PATH="$INSTALL_DIR/relay"
 
